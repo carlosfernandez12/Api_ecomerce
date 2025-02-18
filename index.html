@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      button {
+        margin: 5px;
+        padding: 10px;
+        cursor: pointer;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🔥 Tienda API - CRUD con Fetch</h2>
+
+    <button onclick="obtenerProductos()">📦 Obtener Productos</button>
+    <button onclick="crearProducto()">🆕 Agregar Producto</button>
+
+    <input
+      type="number"
+      id="idProductoActualizar"
+      placeholder="ID Producto a Actualizar"
+    />
+    <button onclick="actualizarProducto()">✏️ Actualizar Producto</button>
+
+    <input
+      type="number"
+      id="idProductoEliminar"
+      placeholder="ID Producto a Eliminar"
+    />
+    <button onclick="eliminarProducto()">🗑️ Eliminar Producto</button>
+
+    <h3>📋 Lista de Productos:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Categoría</th>
+        </tr>
+      </thead>
+      <tbody id="tablaProductos"></tbody>
+    </table>
+
+    <script src="app.js"></script>
+  </body>
+</html>
