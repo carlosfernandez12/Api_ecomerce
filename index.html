@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Tiendas</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -28,26 +28,26 @@
     </style>
   </head>
   <body>
-    <h2>🔥 Tienda API - CRUD con Fetch</h2>
+    <h2>Tienda Epic</h2>
 
-    <button onclick="obtenerProductos()">📦 Obtener Productos</button>
-    <button onclick="crearProducto()">🆕 Agregar Producto</button>
+    <button onclick="obtener_productos()">Obtener Productos</button>
+    <button onclick="crear_productos()">Agregar Producto</button>
 
     <input
       type="number"
       id="idProductoActualizar"
       placeholder="ID Producto a Actualizar"
     />
-    <button onclick="actualizarProducto()">✏️ Actualizar Producto</button>
+    <button onclick="actualizarProducto()">Actualizar Producto</button>
 
     <input
       type="number"
       id="idProductoEliminar"
       placeholder="ID Producto a Eliminar"
     />
-    <button onclick="eliminarProducto()">🗑️ Eliminar Producto</button>
+    <button onclick="eliminarProducto()">Eliminar Producto</button>
 
-    <h3>📋 Lista de Productos:</h3>
+    <h3>Lista de Productos:</h3>
     <table>
       <thead>
         <tr>
@@ -55,6 +55,7 @@
           <th>Nombre</th>
           <th>Precio</th>
           <th>Categoría</th>
+          <th>Imagen</th>
         </tr>
       </thead>
       <tbody id="tablaProductos"></tbody>
