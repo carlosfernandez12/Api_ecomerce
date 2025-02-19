@@ -27,8 +27,8 @@ function obtener_productos() {
 
 function crear_productos() {
   const nuevo_producto = {
-    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    price: 109.95,
+    title: "Laptop HP game pro",
+    price: 1023.95,
     description:
       "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
@@ -111,8 +111,8 @@ function eliminarProducto() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Producto eliminado:", data);
-      if (typeof obtenerProductos === "function") {
-        obtenerProductos();
+      if (typeof obtener_productos === "function") {
+        obtener_productos();
       } else {
         console.warn("Advertencia: obtenerProductos no está definida.");
       }
