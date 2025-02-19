@@ -1,14 +1,14 @@
-const API_URL = "https://fakestoreapi.com/products";
+const API_URL = "https://fakestoreapi.com/products"
 
 function obtener_productos() {
   fetch(API_URL)
     .then((responde) => responde.json())
     .then((data) => {
-      const tablaProductos = document.getElementById("tablaProductos");
-      tablaProductos.innerHTML = "";
+      const tablaProductos = document.getElementById("tablaProductos")
+      tablaProductos.innerHTML = ""
 
       data.forEach((producto) => {
-        const fila = document.createElement("tr");
+        const fila = document.createElement("tr")
         fila.innerHTML = `
           <td>${producto.id}</td>
           <td>${producto.title}</td>
@@ -16,7 +16,7 @@ function obtener_productos() {
           <td>${producto.category}</td>
           <td><img src="${producto.image}" width="50"></td>
         `;
-        tablaProductos.appendChild(fila);
+        tablaProductos.appendChild(fila)
       });
     })
     // console.log("Lista de productos:", data);
@@ -28,11 +28,11 @@ function obtener_productos() {
 function crear_productos() {
   const nuevo_producto = {
     title: "Laptop HP game pro",
-    price: 1023.95,
+    price: 523.95,
     description:
       "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    category: "men's clothing",
+    image: "",
+    category: "Electronic pp",
   };
 
   fetch("https://fakestoreapi.com/products", {
