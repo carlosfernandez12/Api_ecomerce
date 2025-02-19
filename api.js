@@ -10,7 +10,6 @@ function obtener_productos() {
       console.error("Error...:", error);
     });
 }
-obtener_productos();
 
 function crear_productos() {
   const nuevo_proyecto = {
@@ -28,7 +27,7 @@ function crear_productos() {
     },
     body: JSON.stringify(nuevo_proyecto),
   })
-    .then((Response) => responde.json())
+    .then((Response) => response.json())
     .then((data) => {
       console.log("creado:", data);
     })
@@ -36,7 +35,7 @@ function crear_productos() {
       console.error("error_producto", error);
     });
 }
-crear_productos();
+
 function actualizarProducto(id) {
   const productoActualizado = {
     title: "Laptop Gamer Pro",
@@ -45,7 +44,7 @@ function actualizarProducto(id) {
   fetch(`${API_URL}/${id}`, {
     method: "PATCH",
     headers: {
-      "Content-Type": "applcation/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(productoActualizado),
   })
@@ -57,21 +56,32 @@ function actualizarProducto(id) {
       console.error("error...:", error);
     });
 }
-actualizarProducto(21);
 
-function eliminarProducto(id) {
-  fetch(`${API_URL}/${id}`, {
+function eliminarProducto() {
+  const id = document.getElementById("idProductoEliminar").value.trim(); // Obtiene el valor del input y elimina espacios extra
+
+  if (!id || isNaN(id)) {
+    // Verifica si el ID es válido
+    console.error("Error: ID del producto no es válido.", id);
+    return;
+  }
+
+  fetch(`https://fakestoreapi.com/products/${id}`, {
     method: "DELETE",
     headers: {
-      "Content-Type": "applcation/json",
+      "Content-Type": "application/json",
     },
   })
-    .then((Response) => Response.json())
+    .then((response) => response.json())
     .then((data) => {
-      console.log("producto_eliminado", data);
+      console.log("Producto eliminado:", data);
+      if (typeof obtenerProductos === "function") {
+        obtenerProductos();
+      } else {
+        console.warn("Advertencia: obtenerProductos no está definida.");
+      }
     })
     .catch((error) => {
-      console.error("error.", error);
+      console.error("Error:", error);
     });
 }
-eliminarProducto(21);
