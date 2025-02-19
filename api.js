@@ -4,15 +4,29 @@ function obtener_productos() {
   fetch(API_URL)
     .then((responde) => responde.json())
     .then((data) => {
-      console.log("Lista de productos:", data);
+      const tablaProductos = document.getElementById("tablaProductos");
+      tablaProductos.innerHTML = "";
+
+      data.forEach((producto) => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${producto.id}</td>
+          <td>${producto.title}</td>
+          <td>$${producto.price.toFixed(2)}</td>
+          <td>${producto.category}</td>
+          <td><img src="${producto.image}" width="50"></td>
+        `;
+        tablaProductos.appendChild(fila);
+      });
     })
+    // console.log("Lista de productos:", data);
     .catch((error) => {
       console.error("Error...:", error);
     });
 }
 
 function crear_productos() {
-  const nuevo_proyecto = {
+  const nuevo_producto = {
     title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
     price: 109.95,
     description:
@@ -20,48 +34,70 @@ function crear_productos() {
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
     category: "men's clothing",
   };
-  fetch(API_URL, {
+
+  fetch("https://fakestoreapi.com/products", {
+    // Ruta correcta
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(nuevo_proyecto),
+    body: JSON.stringify(nuevo_producto),
   })
-    .then((Response) => response.json())
-    .then((data) => {
-      console.log("creado:", data);
+    .then((response) => response.json())
+    .then((producto) => {
+      const tablaProductos = document.getElementById("tablaProductos");
+
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td>${producto.id}</td>
+        <td>${producto.title}</td>
+        <td>$${producto.price.toFixed(2)}</td>
+        <td>${producto.category}</td>
+        <td><img src="${producto.image}" width="50"></td>
+      `;
+      tablaProductos.appendChild(fila);
+
+      //console.log("Producto creado:", producto);
     })
     .catch((error) => {
-      console.error("error_producto", error);
+      console.error("Error:", error);
     });
 }
 
-function actualizarProducto(id) {
+function actualizarProducto() {
+  const id = document.getElementById("idProductoActualizar").value.trim();
+
+  if (!id || isNaN(id)) {
+    console.error("Error: ID del producto no es válido.", id);
+    return;
+  }
+
   const productoActualizado = {
     title: "Laptop Gamer Pro",
     price: 1800,
   };
-  fetch(`${API_URL}/${id}`, {
+
+  fetch(`https://fakestoreapi.com/products/${id}`, {
+    // Asegúrate de que la URL es correcta
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(productoActualizado),
   })
-    .then((Response) => Response.json())
+    .then((response) => response.json())
     .then((data) => {
-      console.log("proyecto_actualizado", data);
+      console.log("Producto actualizado:", data);
     })
     .catch((error) => {
-      console.error("error...:", error);
+      console.error("Error:", error);
     });
 }
 
 function eliminarProducto() {
-  const id = document.getElementById("idProductoEliminar").value.trim(); // Obtiene el valor del input y elimina espacios extra
+  const id = document.getElementById("idProductoEliminar").value.trim();
 
   if (!id || isNaN(id)) {
-    // Verifica si el ID es válido
     console.error("Error: ID del producto no es válido.", id);
     return;
   }
